@@ -31,18 +31,21 @@
 
  const { TestReactModule } = NativeModules;
 
-const callJava = async () => {
+const callLibrary = async () => {
      console.log(TestReactModule);
-     const ret = await TestReactModule.getFromJava();
-     console.log(ret);
+     const retFromJava = await TestReactModule.getFromJava();
+     console.log(retFromJava);
+
+    const retFromC = await TestReactModule.getFromCLibrary();
+    console.log(retFromC);
  }
 
  const ReturnFromJava: React.FC = () => {
 
-     const ret = callJava();
+     const ret = callLibrary();
 
      return (
-         <TouchableOpacity onPress={callJava}>
+         <TouchableOpacity onPress={callLibrary}>
              <Text>Press Here</Text>
          </TouchableOpacity>
      );

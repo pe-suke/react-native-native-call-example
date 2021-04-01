@@ -9,9 +9,9 @@ import com.facebook.react.bridge.ReactMethod;
 
 public class TestReactModule extends ReactContextBaseJavaModule {
 
-//    static {
-//        System.loadLibrary("test_react_jni");
-//    }
+    static {
+        System.loadLibrary("test_react_jni");
+    }
 
     public TestReactModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -22,26 +22,23 @@ public class TestReactModule extends ReactContextBaseJavaModule {
         return "TestReactModule";
     }
 
-//    @ReactMethod
-//    public void getFromCLibrary(Promise promise) {
-//        try {
-//            String returnValue = getFromCLibraryJNI();
-//            promise.resolve(returnValue);
-//        } catch (Exception e) {
-//            promise.reject(e);
-//        }
-//    }
+    @ReactMethod
+    public void getFromCLibrary(Promise promise) {
+        try {
+            String returnValue = getFromCLibraryJNI();
+            Log.i("TestReactModule", "Call getFromCLibrary");
+            promise.resolve(returnValue);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
 
-//    public native String getFromCLibraryJNI();
+    public native String getFromCLibraryJNI();
 
-//    @ReactMethod
-//    public void getFromJava(Promise promise) {
-//        promise.resolve("The Values From Java");
-//    }
     @ReactMethod
     public void getFromJava(Promise promise) {
+        Log.i("TestReactModule", "Call getFromJava");
         promise.resolve("Call From Java using getFromJava method");
-        Log.d("TestReactModule", "Call getFromJava");
     }
 
 }

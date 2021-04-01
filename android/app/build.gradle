@@ -137,10 +137,13 @@ android {
         versionCode 1
         versionName "1.0"
         ndk {
-            abiFilters "armeabi-v7a", "x86"
-            moduleName "test_react_jni"
-            ldLibs "log"
-            cFlags "-std=c99"
+            abiFilters "armeabi-v7a", "x86", "x86_64"
+        }
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
         }
     }
 
